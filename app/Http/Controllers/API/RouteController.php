@@ -41,4 +41,10 @@ public function categoryCreate (Request $request){
     $response =  Category::create($data);
     return response()->json($response, 200);
 }
+    // category update
+    public function categoryUpdate(Request $request ){
+        return $request->all();
+    }
+
 }
+
