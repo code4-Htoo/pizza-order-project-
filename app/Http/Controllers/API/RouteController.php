@@ -41,9 +41,20 @@ public function categoryCreate (Request $request){
     $response =  Category::create($data);
     return response()->json($response, 200);
 }
-    // category update
-    public function categoryUpdate(Request $request ){
-        return $request->all();
+     // category update
+     public function categoryUpdate(Request $request ){
+        $data = $this->getCategoryData($request);
+    }
+
+    // get contact data
+    private function getCategoryData($request){
+        return [
+            'name'=> $request->name,
+            'name'=> $request->email,
+            'name'=> $request->description,
+            'created_at' => Carbon::now(),
+            'updated_at' =>Carbon::now()
+        ];
     }
 
 }
