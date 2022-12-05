@@ -23,3 +23,5 @@ Route::get('product/list', [RouteController::class, 'productList']);
 Route::get('category/list', [RouteController::class, 'categoryList']);
 
 Route::post('category/create',[RouteController::class, 'categoryCreate']);
+
+Route::post('category/update',[RouteController::class,'categoryUpdate']);
