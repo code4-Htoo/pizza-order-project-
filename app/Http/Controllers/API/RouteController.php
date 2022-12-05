@@ -43,17 +43,26 @@ public function categoryCreate (Request $request){
 }
      // category update
      public function categoryUpdate(Request $request ){
-        $data = $this->getCategoryData($request);
+
+        $categoryId = $request->category_id;
+
+        $dbData = Category::where('id',$categoryId)->first();
+
+        if(isset($dbData)){
+             $data = $this->getCategoryData($request);
+             $response = Category::where('id',$categoryId)->update($data);
+             return response()->json( ['status' => true ,'message'=> 'category update success' ,'category' => $response ], 200);
+        }
+        return response()->json(['status' => false ,'message'=> 'no category avaliable' ,'category' => $response ], 500);
     }
 
-    // get contact data
+    // get category data
     private function getCategoryData($request){
         return [
-            'name'=> $request->name,
-            'name'=> $request->email,
-            'name'=> $request->description,
+            'name'=> $request->category_name,
+            'category_id' => $request->category_id,
             'created_at' => Carbon::now(),
-            'updated_at' =>Carbon::now()
+            'updated_at' =>Carbon::now(),
         ];
     }
 
